@@ -6,8 +6,12 @@
     android:layout_height="match_parent"
     tools:context="xk.viewdemo.MainActivity">
 
-        <xk.viewdemo.View.TestView
+        <!--<xk.viewdemo.View.TestView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
 
+        <xk.viewdemo.View.PieView
+            android:id="@+id/pieeview"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
