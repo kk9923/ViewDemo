@@ -4,15 +4,111 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="xk.viewdemo.MainActivity">
-
+        <!--基本图形-->
         <!--<xk.viewdemo.View.TestView-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="match_parent" />-->
+        <!--自定义饼状图-->
+        <!--<xk.viewdemo.View.PieView-->
+            <!--android:id="@+id/pieeview"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
 
-        <xk.viewdemo.View.PieView
-            android:id="@+id/pieeview"
+        <!--<xk.viewdemo.View.CanvasBasicOptionView-->
+        <!--android:id="@+id/canvasOption"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+        <!--<xk.viewdemo.View.PathView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--<xk.viewdemo.View.RadarView-->
+            <!--android:id="@+id/xzzx"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+        <!--<xk.viewdemo.View.CircleChartView-->
+            <!--android:id="@+id/circle_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true" />-->
+        <!--<xk.viewdemo.View.BezierView-->
+            <!--android:background="#efefef"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+        <!--<xk.viewdemo.View.SearchView-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="100dp" />-->
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp">-->
+                <!--<Button-->
+                    <!--android:id="@+id/scale"-->
+                    <!--android:gravity="center"-->
+                    <!--android:textSize="30sp"-->
+                    <!--android:text="缩放"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent" />-->
+                <!--<Button-->
+                    <!--android:id="@+id/alphaa"-->
+                    <!--android:gravity="center"-->
+                    <!--android:textSize="30sp"-->
+                    <!--android:text="渐变"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent" />-->
+                <!--<Button-->
+                    <!--android:id="@+id/roratea"-->
+                    <!--android:gravity="center"-->
+                    <!--android:textSize="30sp"-->
+                    <!--android:text="旋转"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent" />-->
+                <!--<Button-->
+                    <!--android:id="@+id/translate"-->
+                    <!--android:gravity="center"-->
+                    <!--android:textSize="30sp"-->
+                    <!--android:text="平移"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent" />-->
+                <!--<Button-->
+                    <!--android:id="@+id/set"-->
+                    <!--android:gravity="center"-->
+                    <!--android:textSize="30sp"-->
+                    <!--android:text="SET"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent" />-->
+        <!--</LinearLayout>-->
+
+        <!--<ImageView-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@drawable/single"-->
+            <!--android:id="@+id/iv"-->
+            <!--android:layout_width="200dp"-->
+            <!--android:layout_height="200dp" />-->
+        <xk.viewdemo.MyTextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:titleText="3712"
+            android:padding="10dp"
+            app:titleTextColor="#ff0000"
+            app:titleTextSize="40sp" />
+
+        <xk.viewdemo.PopupView
+            android:layout_width="150dp"
+            android:layout_height="100dp" />
+        <xk.viewdemo.CirclePercentView
+            android:id="@+id/circle"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+
+
 
 </LinearLayout>

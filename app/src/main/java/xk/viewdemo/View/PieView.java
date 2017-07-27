@@ -10,6 +10,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import xk.viewdemo.bean.PieChartInfo;
+
 /**
  * Created by 31716 on 2017/7/17.
  */
