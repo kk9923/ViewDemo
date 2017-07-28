@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -75,10 +76,12 @@ public class PopupView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.translate(mWidth/2,mHeight/2);
-        canvas.drawRoundRect(-200,-100,200,100,10,10,paint);
+        RectF rect = new RectF(-200,-100,200,100);
+        canvas.drawRoundRect(rect,10,10,paint);
         canvas.drawPath(path,paint);
         paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.STROKE);
-        canvas.drawRoundRect(-width/2,-height/2,width/2,height/2,10,10,paint);
+        RectF rect2 = new RectF(-width/2,-height/2,width/2,height/2);
+        canvas.drawRoundRect(rect2,10,10,paint);
     }
 }

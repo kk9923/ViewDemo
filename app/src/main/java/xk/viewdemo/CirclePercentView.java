@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -90,7 +91,8 @@ Rect rect ;
 
         stripePaint.setStyle(Paint.Style.STROKE);
         stripePaint.setColor(mSmallColor);
-        canvas.drawArc(-200,-200,200,200,-90,360*mCurPercent/100f,false,stripePaint);
+        RectF rect = new RectF(-200,-200,200,200);
+        canvas.drawArc(rect,-90,360*mCurPercent/100f,false,stripePaint);
 
         canvas.drawText(mCurPercent+" %",-rect.width()/2,rect.height()/2,textPaint);
     }

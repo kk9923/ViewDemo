@@ -2,6 +2,7 @@ package xk.viewdemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity {
     //private CircleChartView chartView;
@@ -20,13 +21,31 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     private CirclePercentView circle;
+    private PanelView panelView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         circle = (CirclePercentView) findViewById(R.id.circle);
+        SeekBar seekBar  = (SeekBar) findViewById(R.id.seekBar);
+        panelView = (PanelView) findViewById(R.id.panelView);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                panelView.setmPercent(progress);
+            }
 
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
         circle.postDelayed(runnable,1000);
       //  MyView myview = (MyView) findViewById(R.id.myview);
       //  myview.startAnim();

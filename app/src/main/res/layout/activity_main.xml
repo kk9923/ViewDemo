@@ -101,11 +101,33 @@
             app:titleTextSize="40sp" />
 
         <xk.viewdemo.PopupView
+            android:visibility="gone"
             android:layout_width="150dp"
             android:layout_height="100dp" />
         <xk.viewdemo.CirclePercentView
+            android:visibility="gone"
             android:id="@+id/circle"
             android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <xk.viewdemo.PanelView
+            android:visibility="gone"
+            android:id="@+id/panelView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+       <SeekBar
+           android:visibility="gone"
+           android:id="@+id/seekBar"
+           android:layout_width="match_parent"
+           android:layout_height="30dp" />
+
+        <xk.viewdemo.HorizontalProgressBarWithNumber
+            app:progress_text_offset="3dp"
+            app:progress_text_color="#f00"
+            app:progress_reached_color="#ff0000"
+            app:progress_reached_bar_height="4dp"
+            app:progress_unreached_bar_height="4dp"
+            android:layout_width="300dp"
+            app:progress_text_size="14sp"
             android:layout_height="match_parent" />
 
 
