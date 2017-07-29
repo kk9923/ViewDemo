@@ -79,8 +79,6 @@ public class HorizontalProgressBarWithNumber extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.translate(100,500);
-       // canvas.drawLine(0,-300,0,500,mPaint);
-      //  canvas.drawLine(barWidth,-300,barWidth,500,mPaint);
         mPaint.setColor(mReachedBarColor);
         mPaint.setStrokeWidth(mReachedProgressBarHeight);
         float leftWidth = (currentPercent / 100f) * barWidth + mTextOffset + mReachedRect.width();
@@ -107,15 +105,44 @@ public class HorizontalProgressBarWithNumber extends View {
       //  }else {
              canvas.drawLine((currentPercent/100f)* barWidth+2*mTextOffset+mReachedRect.width(),0,barWidth,0,mPaint);
      //   }
-       // System.out.println("左边=  "  + (barWidth-(mTextOffset + mReachedRect.width())));
-      //  System.out.println("中间=  "  + (mTextOffset+mReachedRect.width()) );
-      //  System.out.println("右边=  "  + (barWidth-((currentPercent/100f) * barWidth+2*mTextOffset+mReachedRect.width())));
 
     }
 
     public void setCurrentPercent(int currentPercent) {
         this.currentPercent = currentPercent;
         invalidate();
+    }
+
+    public int getmReachedProgressBarHeight() {
+        return mReachedProgressBarHeight;
+    }
+
+    public int getmReachedBarColor() {
+        return mReachedBarColor;
+    }
+
+    public int getmUnReachedBarColor() {
+        return mUnReachedBarColor;
+    }
+
+    public int getmUnReachedProgressBarHeight() {
+        return mUnReachedProgressBarHeight;
+    }
+
+    public boolean ismIfDrawText() {
+        return mIfDrawText;
+    }
+
+    public float getTextHeight() {
+        return textHeight;
+    }
+
+    public float getBarWidth() {
+        return barWidth;
+    }
+
+    public int getCurrentPercent() {
+        return currentPercent;
     }
 
     /**
