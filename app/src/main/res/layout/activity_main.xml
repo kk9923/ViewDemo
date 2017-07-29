@@ -121,6 +121,7 @@
            android:layout_height="30dp" />
 
         <xk.viewdemo.HorizontalProgressBarWithNumber
+            android:id="@+id/bar"
             app:progress_text_offset="3dp"
             app:progress_text_color="#f00"
             app:progress_reached_color="#ff0000"

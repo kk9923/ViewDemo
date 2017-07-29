@@ -12,16 +12,17 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             currentPercent++;
             if (currentPercent <=100){
-                circle.setmCurPercent(currentPercent);
+                bar.setCurrentPercent(currentPercent);
             }else {
                 currentPercent = 0 ;
-                circle.setmCurPercent(currentPercent);
+                bar.setCurrentPercent(currentPercent);
             }
-            circle.postDelayed(runnable,300);
+            circle.postDelayed(runnable,100);
         }
     };
     private CirclePercentView circle;
     private PanelView panelView;
+    private HorizontalProgressBarWithNumber bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         circle = (CirclePercentView) findViewById(R.id.circle);
         SeekBar seekBar  = (SeekBar) findViewById(R.id.seekBar);
         panelView = (PanelView) findViewById(R.id.panelView);
+        bar = (HorizontalProgressBarWithNumber) findViewById(R.id.bar);
+        bar.postDelayed(runnable,0);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        circle.postDelayed(runnable,1000);
+       // circle.postDelayed(runnable,1000);
       //  MyView myview = (MyView) findViewById(R.id.myview);
       //  myview.startAnim();
        // chartView = (CircleChartView) findViewById(R.id.circle_view);

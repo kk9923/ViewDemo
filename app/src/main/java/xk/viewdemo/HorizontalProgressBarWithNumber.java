@@ -20,7 +20,7 @@ public class HorizontalProgressBarWithNumber extends View {
     private static final int DEFAULT_HEIGHT_REACHED_PROGRESS_BAR = 2;
     private static final int DEFAULT_HEIGHT_UNREACHED_PROGRESS_BAR = 2;
     private static final int DEFAULT_SIZE_TEXT_OFFSET = 10;
-private Rect  mReachedRect ;
+        private Rect  mReachedRect ;
     protected Paint mPaint = new Paint();
 
     protected int mTextColor = DEFAULT_TEXT_COLOR;      //文字进度颜色
@@ -36,12 +36,11 @@ private Rect  mReachedRect ;
     protected int mUnReachedBarColor = DEFAULT_COLOR_UNREACHED_COLOR;   //右边进度条颜色
 
     protected int mUnReachedProgressBarHeight = dp2px(DEFAULT_HEIGHT_UNREACHED_PROGRESS_BAR);  //左边进度条高度
-
-
     protected boolean mIfDrawText = true;
 
     protected static final int VISIBLE = 0;
     private float textHeight;
+
 
     public HorizontalProgressBarWithNumber(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -56,7 +55,7 @@ private Rect  mReachedRect ;
         mReachedRect = new Rect();
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         textHeight = fontMetrics.descent - fontMetrics.ascent;
-        mPaint.getTextBounds("30%",0,"30%".length(),mReachedRect);
+        mPaint.getTextBounds(currentPercent+"%",0,(currentPercent+"%").length(),mReachedRect);
     }
     private void obtainStyledAttributes(AttributeSet attrs) {
         final TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.HorizontalProgressBarWithNumber);
@@ -75,15 +74,48 @@ private Rect  mReachedRect ;
         }
         attributes.recycle();
     }
-
+    private float barWidth = 500;
+    private  int currentPercent = 10;
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.translate(100,500);
-        canvas.drawLine(0,0,300,0,mPaint);
-        canvas.drawText("30%",300+mTextOffset,mReachedRect.height()/2,mPaint);
+       // canvas.drawLine(0,-300,0,500,mPaint);
+      //  canvas.drawLine(barWidth,-300,barWidth,500,mPaint);
+        mPaint.setColor(mReachedBarColor);
+        mPaint.setStrokeWidth(mReachedProgressBarHeight);
+        float leftWidth = (currentPercent / 100f) * barWidth + mTextOffset + mReachedRect.width();
+
+        if (leftWidth >= barWidth) {
+            //绘制左边区域
+            canvas.drawLine(0,0,barWidth-(mTextOffset + mReachedRect.width()),0,mPaint);
+        }else {
+            //绘制左边区域
+            canvas.drawLine(0,0,currentPercent /100f* barWidth,0,mPaint);
+        }
+
+        if (leftWidth >= barWidth){
+            canvas.drawText(currentPercent+"%", barWidth- mReachedRect.width()-mTextOffset,mReachedRect.height()/2,mPaint);
+        }else {
+            //绘制中间文字区域
+            canvas.drawText(currentPercent+"%",currentPercent /100f * barWidth+mTextOffset,mReachedRect.height()/2,mPaint);
+        }
+        //绘制右边区域
         mPaint.setColor(mUnReachedBarColor);
         mPaint.setStrokeWidth(mUnReachedProgressBarHeight);
-        canvas.drawLine(300+2*mTextOffset+mReachedRect.width(),0,600,0,mPaint);
+       // if (leftWidth >= barWidth){
+
+      //  }else {
+             canvas.drawLine((currentPercent/100f)* barWidth+2*mTextOffset+mReachedRect.width(),0,barWidth,0,mPaint);
+     //   }
+       // System.out.println("左边=  "  + (barWidth-(mTextOffset + mReachedRect.width())));
+      //  System.out.println("中间=  "  + (mTextOffset+mReachedRect.width()) );
+      //  System.out.println("右边=  "  + (barWidth-((currentPercent/100f) * barWidth+2*mTextOffset+mReachedRect.width())));
+
+    }
+
+    public void setCurrentPercent(int currentPercent) {
+        this.currentPercent = currentPercent;
+        invalidate();
     }
 
     /**
