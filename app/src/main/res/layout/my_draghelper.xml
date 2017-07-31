@@ -11,7 +11,7 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:background="#44ff0000"
-        android:text="I can be dragged !"
+        android:text="I am first !"
         android:layout_width="100dp"
         android:layout_height="100dp"/>
 
@@ -20,17 +20,9 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:background="#44ff0000"
-        android:text="I can be dragged !"
+        android:text="I am second  !"
         android:layout_width="100dp"
         android:layout_height="100dp"/>
 
-    <TextView
-        android:layout_margin="10dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:background="#44ff0000"
-        android:text="I can be dragged !"
-        android:layout_width="100dp"
-        android:layout_height="100dp"/>
 
 </xk.viewdemo.MyDragHelper>
