@@ -10,6 +10,6 @@ public class ViewGroupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_draghelper);
+        setContentView(R.layout.drawlayout);
     }
 }
