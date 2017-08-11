@@ -10,14 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.ViewGroupActivity">
+        <activity android:name=".View.FoldindLayoutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".View.ViewGroupActivity"></activity>-->
+        <!-- <activity android:name=".View.ViewGroupActivity"></activity> -->
+        <!-- <activity android:name=".View.MartriActivity"></activity> -->
+        <!--<activity android:name=".View.FoldindLayoutActivity"></activity>-->
     </application>
 
 </manifest>

@@ -1,101 +1,84 @@
 package xk.viewdemo.View;
 
 import android.content.Context;
-import android.support.annotation.AttrRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.ViewDragHelper;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 
 /**
  * Created by 31716 on 2017/8/3.
  */
 
-public class MyDrawLayout extends FrameLayout {
-    private ViewDragHelper dragHelper ;
-    private View menuView;
-    private View mainView;
-    private int mScreenWidth ;
-    private double menuViewPercent = 0.8 ;
+public class MyDrawLayout extends DrawerLayout {
 
-    public MyDrawLayout(@NonNull Context context) {
-        super(context);
-        init();
-    }
+    private static final String TAG = "DrawerFoldLayout";
 
-    public MyDrawLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public MyDrawLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
     }
 
-    public MyDrawLayout(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
-    }
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
 
-    private void init() {
-        dragHelper = ViewDragHelper.create(this, new MyCallBack());
-        dragHelper.setEdgeTrackingEnabled(ViewDragHelper.EDGE_LEFT);
-    }
-    class  MyCallBack extends ViewDragHelper.Callback{
-
-        @Override
-        public boolean tryCaptureView(View child, int pointerId) {
-            //返回ture则表示可以捕获该view,手指摸上一瞬间调运
-            return child==menuView;
-        }
-        @Override
-        public void onEdgeDragStarted(int edgeFlags, int pointerId) {
-            //setEdgeTrackingEnabled设置的边界滑动时触发
-            //captureChildView是为了让tryCaptureView返回false依旧生效
-            dragHelper.captureChildView(menuView, pointerId);
-        }
-        @Override
-        public int clampViewPositionHorizontal(View child, int left, int dx) {
-            //手指触摸移动时实时回调, left表示要到的x位置
-            if (left>0){
-                left=0;
+        final int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++)
+        {
+            final View child = getChildAt(i);
+            if (isDrawerView2(child))
+            {
+                Log.e(TAG, "at" + i);
+                FoldLayout foldlayout = new FoldLayout(
+                        getContext());
+                //<span style="font-family: Arial, Helvetica, sans-serif;">foldlayout</span><span style="font-family: Arial, Helvetica, sans-serif;">.setAnchor(1);</span>
+                removeView(child);
+                foldlayout.addView(child);
+                ViewGroup.LayoutParams layPar = child.getLayoutParams();
+                addView(foldlayout, i, layPar);
             }
-            if (left<  - menuViewPercent * mScreenWidth){
-                left  = (int) (-menuViewPercent*mScreenWidth);
+
+        }
+        setDrawerListener(new DrawerListener() {
+
+            @Override
+            public void onDrawerStateChanged(int arg0) {
+                // TODO Auto-generated method stub
+
             }
-            return left;
-        }
-        @Override
-        public void onViewReleased(View releasedChild, float xvel, float yvel) {
-            super.onViewReleased(releasedChild, xvel, yvel);
-        }
 
-        @Override
-        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-            super.onViewPositionChanged(changedView, left, top, dx, dy);
-        }
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+
+                if (drawerView instanceof FoldLayout) {
+                    FoldLayout foldLayout = ((FoldLayout) drawerView);
+                    Log.e(TAG, "slideOffset = " + slideOffset);
+                    foldLayout.setFactor(slideOffset);
+                }
+
+            }
+
+            @Override
+            public void onDrawerOpened(View arg0) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(View arg0) {
+
+            }
+        });
+
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        mScreenWidth = w;
-    }
-
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        mainView = getChildAt(0);
-        menuView = getChildAt(1);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return dragHelper.shouldInterceptTouchEvent(ev);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        dragHelper.processTouchEvent(event);
-        return true;
+    boolean isDrawerView2(View child) {
+        final int gravity = ((LayoutParams) child.getLayoutParams()).gravity;
+        final int absGravity = GravityCompat.getAbsoluteGravity(gravity,
+                ViewCompat.getLayoutDirection(child));
+        return (absGravity & (Gravity.LEFT | Gravity.RIGHT)) != 0;
     }
 }
